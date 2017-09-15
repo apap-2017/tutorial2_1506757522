@@ -1,0 +1,47 @@
+Latihan​ ​Project​ ​Hello​ ​World
+1. Ganti baris tersebut menjadi @RequestMapping("/hello123")
+   Apakah compile error?
+   	Tidak, dapat dilihat pada gambar 1-1-1.png
+   Jika tidak, stop Spring Boot yang sedang berjalan, run kembali dan buka localhost:8080/hello apa yang terjadi?
+   	Terjadi kesalahan karena tidak ada path /hello123 (dapat dilihat pada gambar 1-1-2.png)
+2. Ganti nama method index() dengan nama method hello()
+   Apakah compile error?
+   	Tidak, dapat dilihat pada gambar 1-2-1.png
+   Jika tidak, Stop Spring Boot yang sedang berjalan, run kembali dan buka localhost:8080/hello apakah page hello sebelumnya masih muncul?
+   	Tidak terjadi kesalahan dalam perubahan nama method, karena request HTTP pada path /hello akan memanggil method hello() (dapat dilihat pada gambar 1-2-2.png)
+3. Ganti string return type menjadi return "hello123";
+   Apakah compile error?
+   	Tidak, dapat dilihat pada gambar 1-3-1.png
+   Jika tidak, Stop Spring Boot yang sedang berjalan, run kembali dan buka localhost:8080/hello apakah page hello sebelumnya masih muncul?
+    Tidak, karena tidak ada view "hello123" ketika melakukan respons terhadap HTTP (dapat dilihat pada gambar 1-3-2.png)
+    
+Latihan​ ​Request​ ​Parameter
+1. Ubah nilai anotasi RequestMapping dari "/greeting" menjadi "/hello/greeting"
+   Buka localhost:​ ​8080/hello/greeting?name=chanek
+   Apakah hasilnya?
+   	Terjadi kesalahan karena path /greeting tidak berada pada path /hello (dapat dilihat pada gambar 2-1-1.png)
+2. Akses localhost:​ ​8080/greeting
+   Apakah hasilnya?
+	Terjadi error karena parameter "name" tidak terisi sehingga tidak ada nilai yang dapat dipassing view (dapat dilihat pada gambar 2-2-1.png)
+   Ubah header method greeting
+   Stop Spring Boot yang sedang berjalan, run kembali, buka localhost: 8080/greeting
+   Apakah hasilnya?
+    Nama yang dimunculkan null karena pada method greeting parameter "name" sudah tidak diharuskan terisi terlebih dahulu (dapat dilihat pada gambar 2-2-3.png)
+3. Ubah header method greeting
+   Stop Spring Boot yang sedang berjalan, run kembali, dan buka localhost:8080/greeting.
+   ​Apakah hasilnya?
+   	Parameter nama sudah tidak diharuskan terisi dan memiliki nilai awal dan parameter "name" memiliki nilai awal "dunia" (dapat dilihat pada gambar 2-3-2.png)
+4. Mengapa tulisan “Sapaan untuk user” tidak pernah muncul?
+	Karena tulisan "Sapaan untuk user" ditimpa dengan header berbentuk text yang akan memunculkan "Selamat datang (nama)!" sehingga tidak pernah muncul. 
+	Apabila header berbentuk text dihapus, maka akan muncul tulisan "Sapaan untuk user"
+
+Latihan​ ​Path​ ​Variable:
+1. Akses localhost:8080/greeting/
+   ​Apa hasilnya?
+   	Terjadi error karena parameter "name" tidak terisi, sehingga tidak ada nilai yang dapat dipassing view (dapat dilihat pada gambar 3-1-1.png)
+   Akses localhost:8080/greeting/
+   Apa hasilnya?
+   	Tidak terjadi error walaupun parameter "name" tidak terisi, karena dalam method greetingPath() dilakukan pengecekan apakan parameter terisi atau tidak, sehingga tetap nilai yang dapat dipassing view meskipun parameter "name" kosong (dapat dilihat pada gambar 3-1-3.png)
+   Akses localhost:8080/greeting/chanek
+   Apa hasilnya?
+   	Tidak terjadi error karena parameter "name" telah terisi, karena dalam method greetingPath() dilakukan pengecekan apakan parameter terisi atau tidak, sehingga nilai yang dipassing ke view merupakan nilai pada parameter "name" (dapat dilihat pada gambar 3-1-4.png)
